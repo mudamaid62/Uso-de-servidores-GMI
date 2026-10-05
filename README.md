@@ -1,12 +1,12 @@
 # Uso-de-servidores-GMI
 Como acceder a los servidores Ada y Dayhoff
 
-##Como obtener una cuenta
+## Como obtener una cuenta
 
 1. Solicite la creación de una cuenta en Ada y/o Dayhoff a Patricio.
 2. Una vez su usuario haya sido creado, siga las instrucciones de acceso
 
-##Acceso a los servidores
+## Acceso a los servidores
 
 1. Desde el terminal de su computador (puede acceder a este usando MobaXterm, PuTTY, WSL-2, o similares), ejecute el sigiente comando para generar una ssh-key.
 
@@ -14,20 +14,20 @@ Como acceder a los servidores Ada y Dayhoff
 ssh-keygen -t ed25519 -f ~/.ssh/id_sshfs -N "" -C "Cualquier nombre que le quieran dar a su key"
 ```
 
-1B. OPCIONAL: Si desea incrementar la seguridad de conección, puede colocar una segunda contraseña sin restricciones de formato al general el ssh-key con la opción -N.
+2. OPCIONAL: Si desea incrementar la seguridad de conección, puede colocar una segunda contraseña sin restricciones de formato al general el ssh-key con la opción -N.
 
 ```
 ssh-keygen -t ed25519 -f ~/.ssh/id_sshfs -N "PASS PHRASE" -C "Cualquier nombre que le quieran dar a su key"
 ```
 
-2. Copie su public key en el servidor para el que se le haya otorgado una cuenta. IMPORTANTE: El paso 1 generará 2 archivos, id_sshfs e id_sshfs.pub, el primero es un archivo privado que no debe compartir con nadie, el segundo es público.
+3. Copie su public key en el servidor para el que se le haya otorgado una cuenta. IMPORTANTE: El paso 1 generará 2 archivos, id_sshfs e id_sshfs.pub, el primero es un archivo privado que no debe compartir con nadie, el segundo es público.
 
 
 ```
 ssh-copy-id -i ~/.ssh/id_sshfs.pub user@ip_server
 ```
 
-3. Verifique que la copia de ssh-key haya funcionado correctamente:
+4. Verifique que la copia de ssh-key haya funcionado correctamente:
 
 ```
 ssh -i ~/.ssh/id_sshfs user@ip_server
@@ -35,13 +35,13 @@ ssh -i ~/.ssh/id_sshfs user@ip_server
 
 Si el servidor le da acceso sin pedirle password, habra realizado la copia de ssh-key correctamente.
 
-4. Desde la terminal de su computador cree el siguiente arcgivo: ~/.ssh/config, usando su editor de textos preferido, e.g. nano.
+5. Desde la terminal de su computador cree el siguiente arcgivo: ~/.ssh/config, usando su editor de textos preferido, e.g. nano.
 
 ```
 nano ~/.ssh/config
 ```
 
-5. En dicho archivo, escriba bloques con el siguiente formato (uno por cada servidor que este utilizando):
+6. En dicho archivo, escriba bloques con el siguiente formato (uno por cada servidor que este utilizando):
 
 ```
 Host server_name
@@ -53,7 +53,7 @@ Host server_name
         Port 22
 ```
 
-6. Finalmente, podra acceder al servidor utilizando el siguiente comando:
+7. Finalmente, podra acceder al servidor utilizando el siguiente comando:
 
 ```
 ssh server_name
